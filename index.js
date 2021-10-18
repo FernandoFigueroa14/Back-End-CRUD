@@ -1,3 +1,4 @@
+//
 const express = require('express');
 const path = require('path');
 
@@ -11,4 +12,5 @@ app.use(express.urlencoded({extended:true}))
 app.engine('html',require('ejs').renderFile)
 app.set('view engine','ejs')
 
+//Se levanta servidor
 app.listen(PORT, () => `Server running in port: ${PORT} :D`)
