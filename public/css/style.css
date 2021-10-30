@@ -95,9 +95,45 @@ p{
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8vw;
     color: rgb(75, 75, 75);
+    display: flex;
 
 }
 
+
+
+
+.table{
+    margin-top: 50px;
+}
+
+
+img{
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.1); 
+    box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.1);
+}
+
+
+
+.btn_1{
+    font-family: 'Montserrat', sans-serif;
+    background: rgb(129,214,228);
+    background: linear-gradient(90deg, rgba(129,214,228,1) 35%, rgba(57,115,240,1) 100%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    padding-right: 25px;
+    padding-left: 25px;
+    border: transparent;
+    font-weight: 300;
+    -webkit-box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.1); 
+    box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+.btn_1:hover{
+    transform: scale(1.1);
+}
+
 .col-11{
-    padding: 40px;
+    padding: 20px;
 }
