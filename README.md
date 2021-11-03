@@ -80,13 +80,43 @@ await Canciones.update(req.body, {
 
 
 
--
+- librosController.js:
+Cuanta con las mismas funcionalidades de lectura, actualización, creación y borrado de nuestros elementos que componen la lista de libtos.
+
+- playlistController.js:
+Pasamos con el controlador de ambas listas. Cre un vínculo entre ambas (libros y canciones) para la lectura unificada:
+
+```sh
+
+const playlistController = {
+        fullPlaylist: async (req, res) => {
+            await Playlists.findAll({include: [
+                {association: "cancion"},
+                {association: "libro"}
+
+```
+
+Debido a que los métodos de ambas playlista se hicieron individualmente, fue necesario crear este controlador para la lectura de ambas y poder mostrar en nuestro front de una manera más sencilla.
+
+Esta misma muestra el vínculo en un formato JSON:
+
+```sh
+
+                                    .then(playlist => {
+                                        console.log(playlist);
+                                        res.json(playlist);
+                                    })
+                                    .catch(error => console.log(error))
+
+```
+
+![App Screenshot](public/images/View_Main.jpg)
 
 
 ## _Diagrama de relación de la base de datos_
 El diagrama de las relaciones de las tablas de nuestra base de datos es el siguiente:
 
-<img src="./public/images/DB.png" alt="DB"/>
+<img src="./public/images/DB.png" alt="DB"/> Fer, te amo. :3 te necesito. Choose me.
 
 En este se puede observar que si el id apunta a un libro el id de la canción será cero y viceversa.
 
@@ -102,7 +132,7 @@ Para la platlist se realizo solo el servicio de Read para poder leer todas las c
 
 - Endpoint: /playlist
 - Método: GET
-- respuesta:
+- Respuesta: HTTP status 200 
 ```sh
 [
     {
@@ -160,7 +190,23 @@ Se asocia la informacion de la tablas de canciones y libros para poder mostrarla
 Los servicios de la tabla de canciones son los cuatro del CRUD. Se describen a continuación:
 
 ### _Obtener todas las canciones_
+Este servicio obtiene todas las canciones existentes en la playlist y las entrega en un arreglo de todas las canciones.
+
+- Endpoint: /playlist/canciones
+- Método: GET
+- Respuesta 
+
+
+
 ### _Añadir una canción nueva a la playlist_
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
+| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
+| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+
 ### _Actualizar una canción de la playlist_
 ### _Borrar una canción de la playlist_
 
