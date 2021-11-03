@@ -146,55 +146,73 @@ Para la platlist se realizo solo el servicio de Read para poder leer todas las c
 - Método: GET
 - Respuesta: HTTP status 200 
 ```sh
-[
-    {
-        "id": 2,
-        "id_cancion": 1,
-        "id_libro": 0,
-        "cancion": {
-            "id": 1,
-            "nombre": "Te mudaste",
-            "artista": "Bad Bunny",
-            "album": "El Ultimo Tour Del Mundo",
-            "duracion": "2:11",
-            "genero": "Reggaeton",
-            "año": 2020,
-            "link_spotify": "https://open.spotify.com/track/5RubKOuDoPn5Kj5TLVxSxY?si=344ff5895ded446b"
-        },
-        "libro": null
-    },
-    {
-        "id": 3,
-        "id_cancion": 2,
-        "id_libro": 0,
-        "cancion": {
+{
+    "status": 200,
+    "playlist": [
+        {
             "id": 2,
-            "nombre": "El mundo es mío",
-            "artista": "Bad Bunny",
-            "album": "El Ultimo Tour Del Mundo",
-            "duracion": "2:46",
-            "genero": "Reggaeton",
-            "año": 2020,
-            "link_spotify": "https://open.spotify.com/track/36DHxTW2xdr9GG15T9oK9L?si=55fb46f86eaa49a4"
+            "id_cancion": 1,
+            "id_libro": 0,
+            "cancion": {
+                "id": 1,
+                "nombre": "Te mudaste",
+                "artista": "Bad Bunny",
+                "album": "El Ultimo Tour Del Mundo",
+                "duracion": "2:11",
+                "genero": "Reggaeton",
+                "año": 2020,
+                "link_spotify": "https://open.spotify.com/track/5RubKOuDoPn5Kj5TLVxSxY?si=344ff5895ded446b"
+            },
+            "libro": null
         },
-        "libro": null
-    },
-    {
-        "id": 4,
-        "id_cancion": 0,
-        "id_libro": 1,
-        "cancion": null,
-        "libro": {
-            "id": 1,
-            "titulo": "Dime quien soy",
-            "autor": "Julio Navarro",
-            "editorial": "Planeta",
-            "año": 2010,
-            "edicion": 1,
-            "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
+        {
+            "id": 3,
+            "id_cancion": 2,
+            "id_libro": 0,
+            "cancion": {
+                "id": 2,
+                "nombre": "El mundo es mío",
+                "artista": "Bad Bunny",
+                "album": "El Ultimo Tour Del Mundo",
+                "duracion": "2:46",
+                "genero": "Reggaeton",
+                "año": 2020,
+                "link_spotify": "https://open.spotify.com/track/36DHxTW2xdr9GG15T9oK9L?si=55fb46f86eaa49a4"
+            },
+            "libro": null
+        },
+        {
+            "id": 4,
+            "id_cancion": 0,
+            "id_libro": 1,
+            "cancion": null,
+            "libro": {
+                "id": 1,
+                "titulo": "Dime quien soy",
+                "autor": "Julio Navarro",
+                "editorial": "Planeta",
+                "año": 2010,
+                "edicion": 1,
+                "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
+            }
+        },
+        {
+            "id": 5,
+            "id_cancion": 0,
+            "id_libro": 2,
+            "cancion": null,
+            "libro": {
+                "id": 2,
+                "titulo": "Persona Normal",
+                "autor": "Benito Taibo",
+                "editorial": "Planeta",
+                "año": 2011,
+                "edicion": 4,
+                "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
+            }
         }
-    }
-]
+    ]
+}
 ```
 Se asocia la informacion de la tablas de canciones y libros para poder mostrarlas en el Front-end de una manera más sencilla. 
 
@@ -206,9 +224,34 @@ Este servicio obtiene todas las canciones existentes en la playlist y las entreg
 
 - Endpoint: /playlist/canciones
 - Método: GET
-- Respuesta 
-
-
+- Respuesta: HTTP status 200
+```sh
+{
+    "status": 200,
+    "canciones": [
+        {
+            "id": 1,
+            "nombre": "Te mudaste",
+            "artista": "Bad Bunny",
+            "album": "El Ultimo Tour Del Mundo",
+            "duracion": "2:11",
+            "genero": "Reggaeton",
+            "año": 2020,
+            "link_spotify": "https://open.spotify.com/track/5RubKOuDoPn5Kj5TLVxSxY?si=344ff5895ded446b"
+        },
+        {
+            "id": 2,
+            "nombre": "El mundo es mío",
+            "artista": "Bad Bunny",
+            "album": "El Ultimo Tour Del Mundo",
+            "duracion": "2:46",
+            "genero": "Reggaeton",
+            "año": 2020,
+            "link_spotify": "https://open.spotify.com/track/36DHxTW2xdr9GG15T9oK9L?si=55fb46f86eaa49a4"
+        }
+    ]
+}
+```
 
 ### _Añadir una canción nueva a la playlist_
 
@@ -226,6 +269,97 @@ Este servicio obtiene todas las canciones existentes en la playlist y las entreg
 Los servicios de la tabla de libros son los cuatro del CRUD. Se describen a continuación:
 
 ### _Obtener todos los libros_
+Este servicio obtiene todos los libros existentes en la playlist y las entrega en un arreglo de todos los libros.
+
+- Endpoint: /playlist/libros
+- Método: GET
+- Respuesta: HTTP status 200
+```sh
+{
+    "status": 200,
+    "libros": [
+        {
+            "id": 1,
+            "titulo": "Dime quien soy",
+            "autor": "Julio Navarro",
+            "editorial": "Planeta",
+            "año": 2010,
+            "edicion": 1,
+            "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
+        },
+        {
+            "id": 2,
+            "titulo": "Persona Normal",
+            "autor": "Benito Taibo",
+            "editorial": "Planeta",
+            "año": 2011,
+            "edicion": 4,
+            "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
+        }
+    ]
+}
+```
+
 ### _Añadir un libro nuevo a la playlist_
+Este servicio permite al usuario añadir un nuevo libro a la playlist, al utilizar este servicio se crea el registro con toda la información del libro en la tabla de libros al igual que se añade el apuntador del nuevo libro en la tabla playlist.
+
+- Endpoint: /playlist/libros/agregar
+- Método: POST
+- Body: 
+```sh
+{
+    "titulo": "Pers",
+    "autor": "Ben",
+    "editorial": "Planeta",
+    "año": 2011,
+    "edicion": 4,
+    "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
+}
+```
+
 ### _Actualizar un libro de la playlist_
 ### _Borrar un libro de la playlist_
+
+## _Seguridad_
+Las credenciales de nuestro proyecto se encuentran ubicadas en la carpeta de stc/database.
+Con el fin de no ser mostradas tan fácilmente, estas se esconden en el archivo config.js para ser llamas como una función posteriormente:
+
+```sh
+module.exports = {
+  "development": {
+    "username": "user5",
+    "password": "****",
+    "database": "Base_Nashe",
+    "host": "18.234.222.26",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "user5",
+    "password": "****",
+    "database": "Base_Nashe",
+    "host": "18.234.222.26",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "user5",
+    "password": "****",
+    "database": "Base_Nashe",
+    "host": "18.234.222.26",
+    "dialect": "mysql"
+  }
+}
+
+```
+
+Mediante el módulo de .sequelizerc:
+
+```javascript
+const path = require('path')
+module.exports = {
+config: path.resolve('./src/database/config', 'config.js'),
+'models-path': path.resolve('./src/database/models'),
+'seeders-path': path.resolve('./src/database/seeders'),
+'migrations-path': path.resolve('./src/database/migrations'),
+}
+
+```
