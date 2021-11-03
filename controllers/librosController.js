@@ -1,5 +1,6 @@
 const path = require('path');
 const db = require('../src/database/models');
+const { validationResult } = require('express-validator');
 
 const Playlists = db.Playlist;
 const Libros = db.Libro;
