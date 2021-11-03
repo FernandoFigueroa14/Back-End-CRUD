@@ -86,9 +86,13 @@ const librosController = {
                     id: req.body.id
                 }
             })
-            .then(() => {
-                console.log("Libro actualizado");
-                res.json({status: 200, estado: "Libro actualizado"});
+            .then((id) => {
+                if(id[0]==1){
+                    console.log("Libro actualizado");
+                    res.json({status: 200, estado: "Libro actualizado"});
+                }else{
+                    res.json({status: 500, estado: "Libro inexistente"});
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -103,9 +107,13 @@ const librosController = {
                     id: req.body.id
                 }
             })
-            .then(() => {
-                console.log("Libro eliminado");
-                res.json({status: 200, estado: "Libro eliminado"});
+            .then((id) => {
+                if(id[0]==1){
+                    console.log("Libro eliminado de la playlist");
+                    res.json({status: 200, estado: "Libro eliminado de la playlist"});
+                }else{
+                    res.json({status: 500, estado: "Libro inexistente"});
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -116,9 +124,13 @@ const librosController = {
                     id_libro: req.body.id
                 }
             })
-            .then(() => {
-                console.log("Libro eliminado de la playlist");
-                res.json({status: 200, estado: "Libro eliminado de la playlist"});
+            .then((id) => {
+                if(id[0]==1){
+                    console.log("Libro eliminado de la playlist");
+                    res.json({status: 200, estado: "Libro eliminado de la playlist"});
+                }else{
+                    res.json({status: 500, estado: "Libro inexistente"});
+                }
             })
             .catch(error => {
                 console.log(error);

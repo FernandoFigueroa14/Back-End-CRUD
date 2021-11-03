@@ -87,9 +87,13 @@ const cancionesController = {
                     id: req.body.id
                 }
             })
-            .then(() => {
-                console.log("Cancion actualizada");
-                res.json({status: 200, estado: "Cancion actualizada"});
+            .then((id) => {
+                if(id[0]==1){
+                    console.log("Canción actualizada");
+                    res.json({status: 200, estado: "Canción actualizada"});
+                }else{
+                    res.json({status: 500, estado: "Canción inexistente"});
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -104,9 +108,13 @@ const cancionesController = {
                     id: req.body.id
                 }
             })
-            .then(() => {
-                console.log("Cancion eliminada");
-                res.json({status: 200, estado: "Cancion eliminada"});
+            .then((id) => {
+                if(id[0]==1){
+                    console.log("Canción eliminada");
+                    res.json({status: 200, estado: "Canción eliminada"});
+                }else{
+                    res.json({status: 500, estado: "Canción inexistente"});
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -118,9 +126,13 @@ const cancionesController = {
                     id_cancion: req.body.id
                 }
             })
-            .then(() => {
-                console.log("Canción eliminada de la playlist");
-                res.json({status: 200, estado: "Canción eliminada de la playlist"});
+            .then((id) => {
+                if(id[0]==1){
+                    console.log("Canción eliminada de la playlist");
+                    res.json({status: 200, estado: "Canción eliminada de la playlist"});
+                }else{
+                    res.json({status: 500, estado: "Canción inexistente"});
+                }
             })
             .catch(error => {
                 console.log(error);
