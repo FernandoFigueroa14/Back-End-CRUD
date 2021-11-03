@@ -257,13 +257,101 @@ Este servicio obtiene todas las canciones existentes en la playlist y las entreg
 ```
 
 ### _Añadir una canción nueva a la playlist_
+Este servicio permite al usuario añadir una nueva canción a la playlist, al utilizar este servicio se crea el registro con toda la información de la canción en la tabla de canciones al igual que se añade el apuntador de la nueva canción en la tabla playlist.
 
-| Color             | Hex                                                                |
+- Endpoint: /playlist/canciones/agregar
+- Método: POST
+- Body: 
+```sh
+{
+    "nombre": "El mundo es mío",
+    "artista": "Bad Bunny",
+    "album": "El Ultimo Tour Del Mundo",
+    "duracion": "2:46",
+    "genero": "Reggaeton",
+    "año": 2020,
+    "link_spotify": "https://open.spotify.com/track/36DHxTW2xdr9GG15T9oK9L?si=55fb46f86eaa49a4"
+}
+```
+- Validaciones:
+
+| Campo             | Validación                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+| nombre            | No puede estar vacio. |
+| artista           | No puede estar vacio. |
+| album             | No puede estar vacío. |
+| duracion          | No puede estar vacio. Debe de ser de al menos 4 caracteres.  |
+| genero            | No puede estar vacio. Debe de ser de al menos 3 caracteres. |
+| año               | No puede estar vacío. Debe de ser de al menos 4 caracteres. Debe de ser numérico. |
+| link_spotify      | No puede estar vacío. |
+
+- Errores:
+
+| Código             | Mensaje                                                                | HTTP |
+| -----------------  | ---------------------------------------------------------------------- |------|
+| InvalidBodyException | Debes de colocar el nombre de la canción                             | 422 |
+| InvalidBodyException | Debes de ingresar un valor numérico                                  | 422 |
+| InvalidBodyException | Debes ingresar un año valido (4 caracteres)                          | 422 |
+
+- Respuesta: HTTP status 201
+```sh
+{
+    "status": 201,
+    "estado": "Cancion creada"
+}
+```
+- Respuesta con error: 
+```
+{
+    "status": 400,
+    "errors": {
+        "errors": [
+            {
+                "value": "",
+                "msg": "Debes de colocar el nombre de la canción",
+                "param": "nombre",
+                "location": "body"
+            },
+            {
+                "value": "",
+                "msg": "Debes de colocar el artista de la canción",
+                "param": "artista",
+                "location": "body"
+            },
+            {
+                "value": "",
+                "msg": "Debes de colocar el album de la canción",
+                "param": "album",
+                "location": "body"
+            },
+            {
+                "value": "2:4",
+                "msg": "Debes ingresar una duración valida (ejemplo -> 2:32)",
+                "param": "duracion",
+                "location": "body"
+            },
+            {
+                "value": "Re",
+                "msg": "No hay generos de menos de 3 caracteres",
+                "param": "genero",
+                "location": "body"
+            },
+            {
+                "value": "202l",
+                "msg": "Debes de ingresar un valor numérico",
+                "param": "año",
+                "location": "body"
+            },
+            {
+                "value": "",
+                "msg": "Debes de colocar tu descripción",
+                "param": "link_spotify",
+                "location": "body"
+            }
+        ]
+    }
+}
+```
 
 ### _Actualizar una canción de la playlist_
 ### _Borrar una canción de la playlist_
@@ -394,6 +482,8 @@ Este servicio permite al usuario añadir un nuevo libro a la playlist, al utiliz
 
 
 ### _Actualizar un libro de la playlist_
+Este servicio permite al usuario actua
+
 ### _Borrar un libro de la playlist_
 
 ## _Seguridad_
@@ -480,3 +570,5 @@ const checkConectionDB = async () => {
   
   checkConectionDB();
   ```
+
+## _Models_
