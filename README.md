@@ -17,3 +17,20 @@ Para correrlo.
 
 ## _Estructura del proyecto_
 El proyecto se encuentra dividido en distintas carpetas. Es imperativo que cada una de ellas se encuentre en el repositorio/ubicación especificado a continuación:
+
+- Controllers
+- Public
+  - css
+  - images
+  - js
+- Routes
+- src
+- views
+- Archivos individuales:
+  - sequelizerc
+  - index.js
+
+Con lo anterior, se explica cada uno de ellos:
+
+## _Controllers_
+
