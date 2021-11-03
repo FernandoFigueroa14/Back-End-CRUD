@@ -356,14 +356,14 @@ Este servicio permite al usuario añadir una nueva canción a la playlist, al ut
 ### _Actualizar una canción de la playlist_
 Este servicio permite al usuario actualizar la información de una cancion en especifico dentro de la playlist. Los datos que se actualizan son de la tabla canciones. La canción se busca en la tabla con el id y actualiza solamente los datos que fueron mandados en el body.
 
-- Endpoint: /playlist/libros/actualizar
+- Endpoint: /playlist/canciones/actualizar
 - Método: POST
 - Body:
 ```sh
 {
     "id": 3,
-    "titulo": "Personas",
-    "autor": "Beno"
+    "año": 2020,
+    "link_spotify": "https://spotify.com/teolvide/AlejandroFernandez"
 }
 ```
 
@@ -371,22 +371,57 @@ Este servicio permite al usuario actualizar la información de una cancion en es
 
 | Código             | Mensaje                                                                | HTTP |
 | -----------------  | ---------------------------------------------------------------------- |------|
-| InvalidBodyException | Debes de colocar el titulo del libro                                 | 422 |
+| RegisterNotFoundException | Canción Inexistente                                             | 500 |
 
 
-- Respuesta: HTTP status 201
+- Respuesta: HTTP status 200
 ```sh
 {
     "status": 200,
-    "estado": "Libro actualizado"
+    "estado": "Canción actualizada"
 }
 ```
 - Respuesta con error: 
-```
-
+```sh
+{
+    "status": 500,
+    "estado": "Canción inexistente"
+}
 ``` 
 
 ### _Borrar una canción de la playlist_
+Este servicio permite al usuario eliminar una canción en especifico dentro de la playlist. La canción se busca en la tabla con el id y se elimina de la tabla de canciones y playlist.
+
+- Endpoint: /playlist/canciones/borrar
+- Método: POST
+- Body:
+```sh
+{
+    "id": 3
+}
+```
+
+- Errores:
+
+| Código             | Mensaje                                                                | HTTP |
+| -----------------  | ---------------------------------------------------------------------- |------|
+| RegisterNotFoundException | Canción Inexistente                                             | 500 |
+
+
+- Respuesta: HTTP status 200
+```sh
+{
+    "status": 200,
+    "estado": "Canción eliminada"
+}
+```
+- Respuesta con error: 
+```sh
+{
+    "status": 500,
+    "estado": "Canción inexistente"
+}
+``` 
 
 ## _Libros_
 Los servicios de la tabla de libros son los cuatro del CRUD. Se describen a continuación:
@@ -534,7 +569,7 @@ Este servicio permite al usuario actualizar la información de un libro en espec
 | RegisterNotFoundException | Libro Inexistente                                               | 500 |
 
 
-- Respuesta: HTTP status 201
+- Respuesta: HTTP status 200
 ```sh
 {
     "status": 200,
@@ -542,7 +577,7 @@ Este servicio permite al usuario actualizar la información de un libro en espec
 }
 ```
 - Respuesta con error: 
-```
+```sh
 {
     "status": 500,
     "estado": "Libro inexistente"
@@ -550,6 +585,39 @@ Este servicio permite al usuario actualizar la información de un libro en espec
 ``` 
 
 ### _Borrar un libro de la playlist_
+Este servicio permite al usuario eliminar un libro en especifico dentro de la playlist. El libro se busca en la tabla con el id y se elimina de la tabla de libros y playlist.
+
+- Endpoint: /playlist/libros/borrar
+- Método: POST
+- Body:
+```sh
+{
+    "id": 3
+}
+```
+
+- Errores:
+
+| Código             | Mensaje                                                                | HTTP |
+| -----------------  | ---------------------------------------------------------------------- |------|
+| RegisterNotFoundException | Libro Inexistente                                               | 500 |
+
+
+- Respuesta: HTTP status 200
+```sh
+{
+    "status": 200,
+    "estado": "Libro eliminado"
+}
+```
+- Respuesta con error: 
+```sh
+{
+    "status": 500,
+    "estado": "Libro inexistente"
+}
+``` 
+
 
 ## _Seguridad_
 Las credenciales de nuestro proyecto se encuentran ubicadas en la carpeta de stc/database.
@@ -635,5 +703,3 @@ const checkConectionDB = async () => {
   
   checkConectionDB();
   ```
-
-## _Models_
