@@ -5,7 +5,10 @@ const Playlists = db.Playlist;
 
 const playlistController = {
         fullPlaylist: async (req, res) => {
-            await Playlists.findAll()
+            await Playlists.findAll({include: [
+                {association: "cancion"},
+                {association: "libro"}
+                ]})
                                     .then(playlist => {
                                         console.log(playlist);
                                         res.json(playlist);

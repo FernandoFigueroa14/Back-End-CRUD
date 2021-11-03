@@ -34,7 +34,14 @@ module.exports=(sequelize, dataTypes) => {
       tableName: 'canciones',
       timestamps: false
     }
-    const Cancion = sequelize.define(alias, cols, config)
+    const Cancion = sequelize.define(alias, cols, config);
+
+    Cancion.associate = function(modelos){
+        Cancion.hasMany(modelos.Playlist, {
+            as: "playlist",
+            foreignKey: "id_cancion"
+            });
+    }
   
     return Cancion;
   }

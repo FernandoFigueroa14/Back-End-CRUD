@@ -20,7 +20,18 @@ module.exports=(sequelize, dataTypes) => {
       tableName: 'playlist',
       timestamps: false
     }
-    const Playlist = sequelize.define(alias, cols, config)
-  
+    const Playlist = sequelize.define(alias, cols, config);
+
+    Playlist.associate = function(modelos){
+        Playlist.belongsTo(modelos.Cancion, {
+            as: "cancion",
+            foreignKey: "id_cancion"
+        });
+        Playlist.belongsTo(modelos.Libro, {
+            as: "libro",
+            foreignKey: "id_libro"
+        });
+    }
+       
     return Playlist;
   }
