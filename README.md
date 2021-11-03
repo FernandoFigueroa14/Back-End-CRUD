@@ -86,7 +86,7 @@ await Canciones.update(req.body, {
 ## _Diagrama de relación de la base de datos_
 El diagrama de las relaciones de las tablas de nuestra base de datos es el siguiente:
 
-<img src="/images/DB.png" alt="DB"/>
+<img src="./public/images/DB.png" alt="DB"/>
 
 En este se puede observar que si el id apunta a un libro el id de la canción será cero y viceversa.
 
