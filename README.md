@@ -128,7 +128,7 @@ Se crearon hojas de estilos unificadas y seperadas para la sobreescritura de Boo
 ## _Diagrama de relación de la base de datos_
 El diagrama de las relaciones de las tablas de nuestra base de datos es el siguiente:
 
-<img src="./public/images/DB.png" alt="DB"/> Fer, te amo. :3 te necesito. Choose me.
+<img style="background-color: white;" src="./public/images/DB.png" alt="DB"/>
 
 En este se puede observar que si el id apunta a un libro el id de la canción será cero y viceversa.
 
@@ -320,21 +320,23 @@ Este servicio permite al usuario añadir un nuevo libro a la playlist, al utiliz
 }
 ```
 - Validaciones:
+
 | Campo             | Validación                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| titulo | No puede estar vacio. |
-| autor | No puede estar vacio. |
-| editorial | No puede estar vacío. |
-| año | No puede estar vacio. Debe de ser de al menos 4 caracteres. Debe de ser numérico. |
-| edicion | No puede estar vacio. Debe de ser numérico. |
-| fotoPortada | No puede estar vacío. |
+| titulo            | No puede estar vacio. |
+| autor             | No puede estar vacio. |
+| editorial         | No puede estar vacío. |
+| año               | No puede estar vacio. Debe de ser de al menos 4 caracteres. Debe de ser numérico. |
+| edicion           | No puede estar vacio. Debe de ser numérico. |
+| fotoPortada       | No puede estar vacío. |
 
 - Errores:
+
 | Código             | Mensaje                                                                | HTTP |
-| ----------------- | ------------------------------------------------------------------ |------------|
-| InvalidBodyException | Debes de colocar el titulo del libro | 422 |
-| InvalidBodyException | Debes de ingresar un valor numérico | 422 |
-| InvalidBodyException | Debes ingresar un año valido (4 caracteres) | 422 |
+| -----------------  | ---------------------------------------------------------------------- |------|
+| InvalidBodyException | Debes de colocar el titulo del libro                                 | 422 |
+| InvalidBodyException | Debes de ingresar un valor numérico                                  | 422 |
+| InvalidBodyException | Debes ingresar un año valido (4 caracteres)                          | 422 |
 
 - Respuesta: HTTP status 201
 ```sh
@@ -343,7 +345,7 @@ Este servicio permite al usuario añadir un nuevo libro a la playlist, al utiliz
     "estado": "Libro creado"
 }
 ```
--Respuesta con error: 
+- Respuesta con error: 
 ```
 {
     "status": 400,
