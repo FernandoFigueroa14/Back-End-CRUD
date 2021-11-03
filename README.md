@@ -482,7 +482,37 @@ Este servicio permite al usuario añadir un nuevo libro a la playlist, al utiliz
 
 
 ### _Actualizar un libro de la playlist_
-Este servicio permite al usuario actua
+Este servicio permite al usuario actualizar la información de un libro en especifico dentro de la playlist. Los datos que se actulizan son de la tabla libros. El libro se busca en la tabla con el id y actualiza solamente los datos que fueron mandados en el body.
+
+- Endpoint: /playlist/libros/actualizar
+- Método: POST
+- Body:
+```sh
+{
+    "id": 3,
+    "titulo": "Personas",
+    "autor": "Beno"
+}
+```
+
+- Errores:
+
+| Código             | Mensaje                                                                | HTTP |
+| -----------------  | ---------------------------------------------------------------------- |------|
+| InvalidBodyException | Debes de colocar el titulo del libro                                 | 422 |
+
+
+- Respuesta: HTTP status 201
+```sh
+{
+    "status": 200,
+    "estado": "Libro actualizado"
+}
+```
+- Respuesta con error: 
+```
+
+``` 
 
 ### _Borrar un libro de la playlist_
 
