@@ -354,6 +354,38 @@ Este servicio permite al usuario añadir una nueva canción a la playlist, al ut
 ```
 
 ### _Actualizar una canción de la playlist_
+Este servicio permite al usuario actualizar la información de una cancion en especifico dentro de la playlist. Los datos que se actualizan son de la tabla canciones. La canción se busca en la tabla con el id y actualiza solamente los datos que fueron mandados en el body.
+
+- Endpoint: /playlist/libros/actualizar
+- Método: POST
+- Body:
+```sh
+{
+    "id": 3,
+    "titulo": "Personas",
+    "autor": "Beno"
+}
+```
+
+- Errores:
+
+| Código             | Mensaje                                                                | HTTP |
+| -----------------  | ---------------------------------------------------------------------- |------|
+| InvalidBodyException | Debes de colocar el titulo del libro                                 | 422 |
+
+
+- Respuesta: HTTP status 201
+```sh
+{
+    "status": 200,
+    "estado": "Libro actualizado"
+}
+```
+- Respuesta con error: 
+```
+
+``` 
+
 ### _Borrar una canción de la playlist_
 
 ## _Libros_
@@ -499,7 +531,7 @@ Este servicio permite al usuario actualizar la información de un libro en espec
 
 | Código             | Mensaje                                                                | HTTP |
 | -----------------  | ---------------------------------------------------------------------- |------|
-| InvalidBodyException | Debes de colocar el titulo del libro                                 | 422 |
+| RegisterNotFoundException | Libro Inexistente                                               | 500 |
 
 
 - Respuesta: HTTP status 201
@@ -511,7 +543,10 @@ Este servicio permite al usuario actualizar la información de un libro en espec
 ```
 - Respuesta con error: 
 ```
-
+{
+    "status": 500,
+    "estado": "Libro inexistente"
+}
 ``` 
 
 ### _Borrar un libro de la playlist_
