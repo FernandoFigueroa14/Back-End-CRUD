@@ -2,8 +2,8 @@
 const express = require('express');
 const path = require('path');
 const { Sequelize } = require('sequelize'); //Conexión base de datos
-const userConfigDB = require('./database/config/config');
-const db = require('./database/models')
+const userConfigDB = require('./src/database/config/config');
+const db = require('./src/database/models')
 
 const playlistRouter = require('./routes/playlist');
 
