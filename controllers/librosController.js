@@ -9,13 +9,17 @@ const librosController = {
             await Libros.findAll()
                                     .then(libros => {
                                         console.log(libros);
-                                        res.json(libros);
+                                        res.json({status: 200, libros});
                                     })
                                     .catch(error => console.log(error))
         },
         createLibro: async (req, res) => {
             console.log(req.body); // <= {id: number, nombre: text}
             
+            let errors = validationResult(req);
+
+            if (errors.isEmpty()) {
+
             await Libros.findOne({where: {titulo: req.body.titulo}})
                             .then(async libro => {
                                 if(libro){
@@ -67,6 +71,10 @@ const librosController = {
                                 console.log(error);
                                 res.json({estado: "Error"});
                             });
+                        } else {
+                            // Si hay errores
+                                res.json({status: 400, errors})
+                            }
 
         },
         actualizarLibro: async (req, res) => {

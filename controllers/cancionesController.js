@@ -10,9 +10,9 @@ const cancionesController = {
             await Canciones.findAll()
                                     .then(canciones => {
                                         console.log(canciones);
-                                        res.json(canciones);
+                                        res.json({status: 200, canciones});
                                     })
-                                    .catch(error => console.log(error))
+                                    .catch(error => console.log({status: 500, error}))
         },
         createCancion: async (req, res) => {
             console.log(req.body); // <= {id: number, nombre: text}

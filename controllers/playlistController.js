@@ -11,7 +11,7 @@ const playlistController = {
                 ]})
                                     .then(playlist => {
                                         console.log(playlist);
-                                        res.json(playlist);
+                                        res.json({status: 200, playlist});
                                     })
                                     .catch(error => console.log(error))
         },
