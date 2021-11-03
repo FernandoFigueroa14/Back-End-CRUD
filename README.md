@@ -139,6 +139,9 @@ A continuacion se enlistan los servicios realizados para la playlist, estos se d
 - Canciones
 - Libros
 
+
+
+
 ## _Playlist_
 Para la platlist se realizo solo el servicio de Read para poder leer todas las canciones y los libros que existen en la playlist. Esta tabla puede ser considerada como tabla pivote ya que es la que contiene la relación con la tabla de canciones y la relación con la tabla de libros.
 
@@ -316,6 +319,77 @@ Este servicio permite al usuario añadir un nuevo libro a la playlist, al utiliz
     "fotoPortada": "https://th.bing.com/th/id/OIP.1W1hg1sTvHelDtsUNfEA7wHaLH?w=123&h=184&c=7&r=0&o=5&pid=1.7"
 }
 ```
+- Validaciones:
+| Campo             | Validación                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| titulo | No puede estar vacio. |
+| autor | No puede estar vacio. |
+| editorial | No puede estar vacío. |
+| año | No puede estar vacio. Debe de ser de al menos 4 caracteres. Debe de ser numérico. |
+| edicion | No puede estar vacio. Debe de ser numérico. |
+| fotoPortada | No puede estar vacío. |
+
+- Errores:
+| Código             | Mensaje                                                                | HTTP |
+| ----------------- | ------------------------------------------------------------------ |------------|
+| InvalidBodyException | Debes de colocar el titulo del libro | 422 |
+| InvalidBodyException | Debes de ingresar un valor numérico | 422 |
+| InvalidBodyException | Debes ingresar un año valido (4 caracteres) | 422 |
+
+- Respuesta: HTTP status 201
+```sh
+{
+    "status": 201,
+    "estado": "Libro creado"
+}
+```
+-Respuesta con error: 
+```
+{
+    "status": 400,
+    "errors": {
+        "errors": [
+            {
+                "value": "",
+                "msg": "Debes de colocar el título del libro",
+                "param": "titulo",
+                "location": "body"
+            },
+            {
+                "value": "",
+                "msg": "Debes de colocar el autor del libro",
+                "param": "autor",
+                "location": "body"
+            },
+            {
+                "value": "",
+                "msg": "Debes de colocar una editorial",
+                "param": "editorial",
+                "location": "body"
+            },
+            {
+                "value": 201,
+                "msg": "Debes ingresar un año valido (4 caracteres)",
+                "param": "año",
+                "location": "body"
+            },
+            {
+                "value": "3r",
+                "msg": "Debes de ingresar un valor numérico",
+                "param": "edicion",
+                "location": "body"
+            },
+            {
+                "value": "",
+                "msg": "Debes de colocar el link de la foto",
+                "param": "fotoPortada",
+                "location": "body"
+            }
+        ]
+    }
+}
+```
+
 
 ### _Actualizar un libro de la playlist_
 ### _Borrar un libro de la playlist_
@@ -363,3 +437,44 @@ config: path.resolve('./src/database/config', 'config.js'),
 }
 
 ```
+
+
+## _Index_
+- Genera nuestro servidor:
+
+```javascript
+const express = require('express');
+const path = require('path');
+const { Sequelize } = require('sequelize'); //Conexión base de datos
+const userConfigDB = require('./src/database/config/config');
+const db = require('./src/database/models
+```
+
+
+- Llama a nuestro MVC:
+```javascript
+app.engine('html',require('ejs').renderFile);
+app.set('view engine','ejs');
+app.use('/playlist', playlistRouter);
+```
+
+- Establace conexión con base de datos:
+
+```javascript
+const checkConectionDB = async () => {
+    const userConfigDB_Development = userConfigDB.development
+    const sequelize = new Sequelize(userConfigDB_Development.database, userConfigDB_Development.username, userConfigDB_Development.password, {
+      host: userConfigDB_Development.host,
+      port: userConfigDB_Development.port,
+      dialect: userConfigDB_Development.dialect
+    })
+    try {
+      await sequelize.authenticate()
+      console.log('Connection to MySQL DataBase has been established successfully');
+    } catch (error) {
+      console.error('Unable to connect to the database: ', error)
+    }
+  };
+  
+  checkConectionDB();
+  ```
