@@ -108,7 +108,7 @@ const librosController = {
                 }
             })
             .then((id) => {
-                if(id[0]==1){
+                if(id==1){
                     console.log("Libro eliminado de la playlist");
                     res.json({status: 200, estado: "Libro eliminado de la playlist"});
                 }else{
@@ -125,7 +125,7 @@ const librosController = {
                 }
             })
             .then((id) => {
-                if(id[0]==1){
+                if(id==1){
                     console.log("Libro eliminado de la playlist");
                     res.json({status: 200, estado: "Libro eliminado de la playlist"});
                 }else{

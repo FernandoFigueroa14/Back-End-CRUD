@@ -109,7 +109,7 @@ const cancionesController = {
                 }
             })
             .then((id) => {
-                if(id[0]==1){
+                if(id==1){
                     console.log("Canción eliminada");
                     res.json({status: 200, estado: "Canción eliminada"});
                 }else{
@@ -127,7 +127,7 @@ const cancionesController = {
                 }
             })
             .then((id) => {
-                if(id[0]==1){
+                if(id==1){
                     console.log("Canción eliminada de la playlist");
                     res.json({status: 200, estado: "Canción eliminada de la playlist"});
                 }else{
