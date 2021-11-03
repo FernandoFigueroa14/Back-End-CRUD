@@ -110,8 +110,20 @@ Esta misma muestra el vínculo en un formato JSON:
 
 ```
 
-![App Screenshot](public/images/View_Main.jpg)
+## _FRONT-END_
 
+A continuación se muestra la Vista de lectura de ambas listas. Dicha view se encuentra programada en views--> main_page.html
+En esta misma se despliegan los elementos con todos los atributos establecidos:
+
+Vista uno: Lectura
+![App Screenshot](public/images/View_Main.jpg)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+
+Vista dos: actualización / edición 
+![App Screenshot](public/images/View_edicion.jpg)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+
+Se crearon hojas de estilos unificadas y seperadas para la sobreescritura de Bootstrap 5.
 
 ## _Diagrama de relación de la base de datos_
 El diagrama de las relaciones de las tablas de nuestra base de datos es el siguiente:
