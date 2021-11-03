@@ -48,10 +48,47 @@ console.log(req.body); // <= {id: number, nombre: text}
             // No hay errores, seguimos adelante.
             await Canciones.findOne({where: {nombre: req.body.nombre}})
 ```
+
+Continuando con el desarrollo del CRUD, el método de actualizarCancion sube los cambios en caso de realizar alguno. Muestra un mensaje de actualización para mejorar la experiencia de nuestro usuario:
+
+```sh
+await Canciones.update(req.body, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then(() => {
+                console.log("Cancion actualizada");
+                res.json({status: 200, estado: "Cancion actualizada"});
+            })
+```
+
+Finalmente el método de borrar elimina el ID respectivo directamente de nuestra instancia:
+
+```sh
+await Canciones.update(req.body, {
+  await Canciones.destroy({
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then(() => {
+                console.log("Cancion eliminada");
+                res.json({status: 200, estado: "Cancion eliminada"});
+            })
+```
+
+
+
 -
 
 
+## _Diagrama de relación de la base de datos_
+El diagrama de las relaciones de las tablas de nuestra base de datos es el siguiente:
 
+<img src="/images/DB.png" alt="DB"/>
+
+En este se puede observar que si el id apunta a un libro el id de la canción será cero y viceversa.
 
 # _Servicios_
 A continuacion se enlistan los servicios realizados para la playlist, estos se dividen en servicios de:
@@ -117,9 +154,20 @@ Para la platlist se realizo solo el servicio de Read para poder leer todas las c
     }
 ]
 ```
-Se asocia la informacion de la tablas de canciones y 
+Se asocia la informacion de la tablas de canciones y libros para poder mostrarlas en el Front-end de una manera más sencilla. 
 
 ## _Canciones_
-Los servicios de la tabla de canciones son los cuatro del CRUD
+Los servicios de la tabla de canciones son los cuatro del CRUD. Se describen a continuación:
+
+### _Obtener todas las canciones_
+### _Añadir una canción nueva a la playlist_
+### _Actualizar una canción de la playlist_
+### _Borrar una canción de la playlist_
 
 ## _Libros_
+Los servicios de la tabla de libros son los cuatro del CRUD. Se describen a continuación:
+
+### _Obtener todos los libros_
+### _Añadir un libro nuevo a la playlist_
+### _Actualizar un libro de la playlist_
+### _Borrar un libro de la playlist_
